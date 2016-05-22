@@ -8,8 +8,7 @@ public class Screen {
     private int width;
     private int height;
     private int[] pixels;
-
-    public int xOffset, yOffset;
+    private int xOffset, yOffset;
 
     public Screen(int width, int height) {
         this.width = width;
@@ -89,35 +88,15 @@ public class Screen {
     }
 
     public void renderPlayer(int xPixel, int yPixel, Sprite sprite) {
-        // 32 = Player size
-
-        xPixel -= xOffset;
-        yPixel -= yOffset;
-
-        for (int y=0; y< 32; y++) {
-            int ya = y + yPixel;
-
-            for (int x=0; x< 32; x++) {
-                int xa = x + xPixel;
-
-                if (xa < -32 || xa >= getWidth() || ya < 0 || ya >= getHeight()) {
-                    break;
-                }
-
-                if (xa < 0) {
-                    xa = 0;
-                }
-
-                int color = sprite.pixels[x + y * 32];
-                if (color != 0xFFFF00FF) {
-                    pixels[xa + ya * getWidth()] = color;
-                }
-            }
-        }
+        renderPlayerOrGhost(xPixel, yPixel, sprite);
     }
 
     public void renderGhost(int xPixel, int yPixel, Sprite sprite) {
-        // 32 = Ghost size
+        renderPlayerOrGhost(xPixel, yPixel, sprite);
+    }
+
+    private void renderPlayerOrGhost(int xPixel, int yPixel, Sprite sprite) {
+        // 32 = Player/Ghost size
 
         xPixel -= xOffset;
         yPixel -= yOffset;

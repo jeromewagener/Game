@@ -3,8 +3,8 @@ package com.jeromewagener.game.levels.tile;
 import com.jeromewagener.game.graphics.Screen;
 import com.jeromewagener.game.graphics.Sprite;
 
-public class VoidTile extends Tile {
-    public VoidTile(Sprite sprite) {
+class VoidTile extends Tile {
+    VoidTile(Sprite sprite) {
         super(sprite);
     }
 

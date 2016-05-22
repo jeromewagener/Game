@@ -1,16 +1,16 @@
 package com.jeromewagener.game.objects.particle;
 
-import com.jeromewagener.game.objects.GameObject;
 import com.jeromewagener.game.graphics.Screen;
 import com.jeromewagener.game.graphics.Sprite;
+import com.jeromewagener.game.objects.GameObject;
 
 public class Particle extends GameObject {
     private Sprite sprite;
     private int life;
     private int time = 0;
 
-    protected double xx, yy, zz;
-    protected double xa, ya, za;
+    double xx, yy, zz;
+    double xa, ya, za;
 
     public Particle(int x, int y, int life) {
         this.x = x;

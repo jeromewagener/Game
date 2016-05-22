@@ -8,13 +8,13 @@ import com.jeromewagener.game.objects.projectile.GhostProjectile;
 import com.jeromewagener.game.objects.projectile.Projectile;
 
 public abstract class AbstractMob extends GameObject {
-    protected Keyboard keyboard;
-    protected int dir = 2;
-    protected int animationCounter = 0;
-    protected boolean isWalking;
+    Keyboard keyboard;
+    int dir = 2;
+    int animationCounter = 0;
+    boolean isWalking;
     public int life = 100;
 
-    public void move(int xa, int ya) {
+    void move(int xa, int ya) {
         if (xa > 0) { dir = 1; }
         if (xa < 0) { dir = 3; }
         if (ya > 0) { dir = 2; }
@@ -48,7 +48,7 @@ public abstract class AbstractMob extends GameObject {
 
     }
 
-    protected void shoot(int x, int y, double angle, boolean isGhost) {
+    void shoot(int x, int y, double angle, boolean isGhost) {
         Projectile p;
         if (isGhost) {
             p = new GhostProjectile(this, x, y, angle);

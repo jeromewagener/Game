@@ -2,14 +2,14 @@ package com.jeromewagener.game.objects.mobile;
 
 import com.jeromewagener.game.Game;
 import com.jeromewagener.game.graphics.AnimatedSprite;
-import com.jeromewagener.game.graphics.SpriteSheet;
-import com.jeromewagener.game.objects.particle.Particle;
-import com.jeromewagener.game.objects.projectile.Projectile;
-import com.jeromewagener.game.objects.projectile.FireProjectile;
 import com.jeromewagener.game.graphics.Screen;
+import com.jeromewagener.game.graphics.SpriteSheet;
 import com.jeromewagener.game.input.Keyboard;
 import com.jeromewagener.game.input.Mouse;
 import com.jeromewagener.game.levels.TileCoordinate;
+import com.jeromewagener.game.objects.particle.Particle;
+import com.jeromewagener.game.objects.projectile.FireProjectile;
+import com.jeromewagener.game.objects.projectile.Projectile;
 
 import java.util.Iterator;
 
@@ -39,27 +39,27 @@ public class Player extends AbstractMob {
             animationCounter++;
         }
 
-        if (keyboard.up) {
+        if (keyboard.isUpPressed()) {
             ya--;
-            if (keyboard.shift) {
+            if (keyboard.isShiftPressed()) {
                 ya--;
             }
         }
-        if (keyboard.down) {
+        if (keyboard.isDownPressed()) {
             ya++;
-            if (keyboard.shift) {
+            if (keyboard.isShiftPressed()) {
                 ya++;
             }
         }
-        if (keyboard.left) {
+        if (keyboard.isLeftPressed()) {
             xa--;
-            if (keyboard.shift) {
+            if (keyboard.isShiftPressed()) {
                 xa--;
             }
         }
-        if (keyboard.right) {
+        if (keyboard.isRightPressed()) {
             xa++;
-            if (keyboard.shift) {
+            if (keyboard.isShiftPressed()) {
                 xa++;
             }
         }

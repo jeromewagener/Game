@@ -6,7 +6,6 @@ import com.jeromewagener.game.input.Mouse;
 import com.jeromewagener.game.levels.Level;
 import com.jeromewagener.game.levels.SpawnLevel;
 
-import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -15,7 +14,6 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.io.IOException;
 
 public class Game extends Canvas implements Runnable {
     private static final double UPDATES_PER_SECOND = 60.0;
@@ -37,7 +35,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage bufferedImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] gamePixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData();
 
-    public Game() {
+    private Game() {
         playMusic("st.wav");
 
         Dimension size = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
@@ -53,13 +51,13 @@ public class Game extends Canvas implements Runnable {
         addMouseMotionListener(mouse);
     }
 
-    public synchronized void start() {
+    private synchronized void start() {
         isRunning = true;
         thread = new Thread(this);
         thread.start();
     }
 
-    public synchronized void stop() {
+    private synchronized void stop() {
         try {
             thread.join();
         } catch (InterruptedException e) {
@@ -169,7 +167,7 @@ public class Game extends Canvas implements Runnable {
         return HEIGHT * SCALE;
     }
 
-    public synchronized void playMusic(final String track) {
+    private synchronized void playMusic(final String track) {
         new Thread(() -> {
             try {
                 Clip clip = AudioSystem.getClip();

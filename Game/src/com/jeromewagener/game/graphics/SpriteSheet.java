@@ -5,13 +5,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class SpriteSheet {
+    final int SIZE;
     private String path;
-    public final int SIZE;
-    public int[] pixels;
+    private int[] pixels;
 
     public static SpriteSheet tiles = new SpriteSheet("/textures/sprite-sheet.png", 512);
 
-    public SpriteSheet(String path, int size) {
+    SpriteSheet(String path, int size) {
         this.path = path;
         SIZE = size;
         pixels = new int[SIZE * SIZE];
@@ -28,5 +28,9 @@ public class SpriteSheet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public int[] getPixels() {
+        return pixels;
     }
 }

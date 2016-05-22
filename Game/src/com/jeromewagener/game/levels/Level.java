@@ -4,6 +4,7 @@ import com.jeromewagener.game.graphics.Screen;
 import com.jeromewagener.game.input.Keyboard;
 import com.jeromewagener.game.levels.tile.Tile;
 import com.jeromewagener.game.levels.tile.TileColorCodes;
+import com.jeromewagener.game.levels.tile.TileConstants;
 import com.jeromewagener.game.objects.GameObject;
 import com.jeromewagener.game.objects.mobile.AbstractMob;
 import com.jeromewagener.game.objects.mobile.Player;
@@ -20,13 +21,13 @@ public abstract class Level {
     private int width, height;
     private int[] tiles;
 
-    protected Player player;
-    protected List<AbstractMob> enemies = new ArrayList<>();
-    protected List<GameObject> stationaryObjects = new ArrayList<>();
-    protected List<Projectile> projectileList = new ArrayList<>();
-    protected List<Particle> particleList = new ArrayList<>();
+    private Player player;
+    private List<AbstractMob> enemies = new ArrayList<>();
+    private List<GameObject> stationaryObjects = new ArrayList<>();
+    private List<Projectile> projectileList = new ArrayList<>();
+    private List<Particle> particleList = new ArrayList<>();
 
-    public Level(String path) {
+    Level(String path) {
         loadLevel(path);
     }
 
@@ -84,45 +85,39 @@ public abstract class Level {
             player.render(screen);
         }
 
-        for (AbstractMob enemy : enemies) {
-            if (!enemy.isRemoved()) {
-                enemy.render(screen);
-            }
-        }
+        enemies.stream().filter(enemy -> !enemy.isRemoved()).forEach(enemy -> enemy.render(screen));
 
-        for (GameObject stationary : stationaryObjects) {
-            screen.renderStationary(stationary);
-        }
+        stationaryObjects.forEach(screen::renderStationary);
     }
 
     public Tile getTile(int x, int y) {
         if (x < 0 || y < 0 || x >= width || y >= height) {
-            return Tile.VOID_TILE;
+            return TileConstants.VOID_TILE;
         }
 
         int tileIndex = x + y * width;
 
         if (tiles[tileIndex] == TileColorCodes.GRASS) {
-            return Tile.GRASS;
+            return TileConstants.GRASS;
         } else if (tiles[tileIndex] == TileColorCodes.GRASS2) {
-            return Tile.GRASS_2;
+            return TileConstants.GRASS_2;
         } else if (tiles[tileIndex] == TileColorCodes.GRASS3) {
-            return Tile.GRASS_3;
+            return TileConstants.GRASS_3;
         } else if (tiles[tileIndex] == TileColorCodes.FLOWER) {
-            return Tile.FLOWER;
+            return TileConstants.FLOWER;
         } else if (tiles[tileIndex] == TileColorCodes.STONE) {
-            return Tile.STONE;
+            return TileConstants.STONE;
         } else if (tiles[tileIndex] == TileColorCodes.BRICK_STONE) {
-            return Tile.BRICK_STONES;
+            return TileConstants.BRICK_STONES;
         } else if (tiles[tileIndex] == TileColorCodes.WATER) {
-            return Tile.WATER;
+            return TileConstants.WATER;
         } else if (tiles[tileIndex] == TileColorCodes.WOOD_FLOOR) {
-            return Tile.WOOD_FLOOR;
+            return TileConstants.WOOD_FLOOR;
         } else if (tiles[tileIndex] == TileColorCodes.SAIL) {
-            return Tile.SAIL;
+            return TileConstants.SAIL;
         }
 
-        return Tile.VOID_TILE;
+        return TileConstants.VOID_TILE;
     }
 
     public boolean xTileCollision(double x, double y, double xa) {
@@ -139,12 +134,20 @@ public abstract class Level {
         return collision;
     }
 
+    void setPlayer(Player player) {
+        this.player = player;
+    }
+
     public Player getPlayer() {
         return player;
     }
 
     public List<AbstractMob> getEnemies() {
         return enemies;
+    }
+
+    List<GameObject> getStationaryObjects() {
+        return stationaryObjects;
     }
 
     public List<Projectile> getProjectileList() {

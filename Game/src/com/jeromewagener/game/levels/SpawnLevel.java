@@ -10,34 +10,34 @@ public class SpawnLevel extends Level {
         super(path);
 
         TileCoordinate spawnPoint = new TileCoordinate(128, 128);
-        player = new Player(Keyboard.getInstance(), spawnPoint);
-        player.init(this);
+        setPlayer(new Player(Keyboard.getInstance(), spawnPoint));
+        getPlayer().init(this);
 
         Ghost ghost = new Ghost(8, 4, spawnPoint);
         ghost.init(this);
-        enemies.add(ghost);
+        getEnemies().add(ghost);
 
         ghost = new Ghost(16, 4, spawnPoint);
         ghost.init(this);
-        enemies.add(ghost);
+        getEnemies().add(ghost);
 
         ghost = new Ghost(0, 10, spawnPoint);
         ghost.init(this);
-        enemies.add(ghost);
+        getEnemies().add(ghost);
 
         ghost = new Ghost(8, 10, spawnPoint);
         ghost.init(this);
-        enemies.add(ghost);
+        getEnemies().add(ghost);
 
         ghost = new Ghost(16, 10, spawnPoint);
         ghost.init(this);
-        enemies.add(ghost);
+        getEnemies().add(ghost);
 
         for (int i=0; i<5; i++) {
             Tree tree = new Tree();
             tree.x = 110 + (i*10);
             tree.y = 130 + (i*6);
-            stationaryObjects.add(tree);
+            getStationaryObjects().add(tree);
         }
     }
 }

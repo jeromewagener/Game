@@ -66,7 +66,7 @@ public class Ghost extends AbstractMob {
                 animatedSprite.getSprite(AnimatedSprite.Animation.values()[dir]));
     }
 
-    public boolean isPlayerInProximity() {
+    private boolean isPlayerInProximity() {
         return !level.getPlayer().isDead() && Math.abs(level.getPlayer().x - x) < 80 && Math.abs(level.getPlayer().y - y) < 80;
     }
 }

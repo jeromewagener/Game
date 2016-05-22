@@ -1,9 +1,9 @@
 package com.jeromewagener.game.objects.projectile;
 
 import com.jeromewagener.game.Game;
-import com.jeromewagener.game.objects.GameObject;
 import com.jeromewagener.game.graphics.Screen;
 import com.jeromewagener.game.graphics.Sprite;
+import com.jeromewagener.game.objects.GameObject;
 import com.jeromewagener.game.objects.producer.Producer;
 
 public class GhostProjectile extends Projectile {
@@ -67,7 +67,7 @@ public class GhostProjectile extends Projectile {
         }
     }
 
-    protected double getDistance() {
+    private double getDistance() {
         return Math.sqrt(Math.abs((xOrigin - x) * (xOrigin - x) + (yOrigin - y) * (yOrigin - y)));
     }
 

@@ -37,9 +37,9 @@ public class BloodParticle extends Particle {
 
         if (zz < 0) {
             zz = 0;
-            za *= -0.8;
-            xa *= 0.4;
-            ya *= 0.4;
+            za *= -0.90;
+            xa *= 0.50;
+            ya *= 0.50;
         }
 
         za -= 0.1;

@@ -29,7 +29,7 @@ public class AnimatedSprite {
 
     public Sprite getSprite(Animation animation) {
         int speedFactor;
-        if (keyboard != null && keyboard.shift) {
+        if (keyboard != null && keyboard.isShiftPressed()) {
             speedFactor = 20;
         } else {
             speedFactor = 100;
